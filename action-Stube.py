@@ -39,7 +39,7 @@ def msg_licht_an(hermes, intentMessage):
         house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
         result_sentence = "Das Licht wird in {} angeschaltet".format(str(house_room))  # The response that will be said out loud by the TTS engine.
     else:
-        result_sentence = "Lampe an"
+        result_sentence = "Tisch Licht an"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
@@ -55,7 +55,7 @@ def msg_licht_aus(hermes, intentMessage):
         house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
         result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(house_room))  # The response that will be said out loud by the TTS engine.
     else:
-        result_sentence = "Licht aus"
+        result_sentence = "Tisch Licht aus"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
@@ -90,7 +90,7 @@ def msg_Wand_aus(hermes, intentMessage):
         result_sentence = "Wand Licht aus"
 
     current_session_id = intentMessage.session_id
-hermes.publish_end_session(current_session_id, result_sentence)
+    hermes.publish_end_session(current_session_id, result_sentence)
 
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
