@@ -60,9 +60,26 @@ def msg_licht_aus(hermes, intentMessage):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
+def msg_Wand_an(hermes, intentMessage):
+    conf = read_configuration_file(CONFIG_INI)
+
+    ws = create_connection("ws://192.168.178.102:8080")
+    ws.send("Update GA:00_0_019=1")
+    ws.close()
+
+    if len(intentMessage.slots.house_room) > 0:
+        house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
+        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(house_room))  # The response that will be said out loud by the TTS engine.
+    else:
+        result_sentence = "Wand Licht an"
+
+    current_session_id = intentMessage.session_id
+    hermes.publish_end_session(current_session_id, result_sentence)
+
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
-        h.subscribe_intent("cetax:Esstisch_Licht_an", msg_licht_an)
-        h.subscribe_intent("cetax:Esstisch_Licht_aus", msg_licht_aus)
+        h.subscribe_intent("cetax:Decke_Licht_an", msg_licht_an)
+        h.subscribe_intent("cetax:Decke_Licht_aus", msg_licht_aus)
+        h.subscribe_intent("cetax:Wand_Licht_an", msg_Wand_an)
         h.start()
