@@ -95,8 +95,8 @@ def msg_Wand_aus(hermes, intentMessage):
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
-        h.subscribe_intent("cetax:Decke_Licht_an", msg_licht_an)
-        h.subscribe_intent("cetax:Decke_Licht_aus", msg_licht_aus)
+        h.subscribe_intent("cetax:Tisch_Licht_an", msg_licht_an)
+        h.subscribe_intent("cetax:Tisch_Licht_aus", msg_licht_aus)
         h.subscribe_intent("cetax:Wand_Licht_an", msg_Wand_an)
         h.subscribe_intent("cetax:Wand_Licht_aus", msg_Wand_aus)
         h.start()
