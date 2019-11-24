@@ -32,7 +32,6 @@ def msg_stube_tisch_licht_an(hermes, intentMessage):
     
     ws = create_connection("ws://192.168.178.102:8080")
     ws.send("Update GA:00_0_002=1")
-    #result =  ws.recv()
     ws.close()
     
     result_sentence = "Tisch Licht an"
