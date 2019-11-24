@@ -60,32 +60,32 @@ def msg_stube_tisch_licht_aus(hermes, intentMessage):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
-def msg_Wand_an(hermes, intentMessage):
+def msg_stube_Wand_licht_an(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
 
     ws = create_connection("ws://192.168.178.102:8080")
     ws.send("Update GA:00_0_019=1")
     ws.close()
 
-    if len(intentMessage.slots.house_room) > 0:
-        house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(house_room))  # The response that will be said out loud by the TTS engine.
+    if len(intentMessage.slots.Stube_Wand_Licht_an) > 0:
+        Stube_Wand_Licht_an = intentMessage.slots.Stube_Wand_Licht_an.first().value # We extract the value from the slot "house_room"
+        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(Stube_Wand_Licht_an))  # The response that will be said out loud by the TTS engine.
     else:
         result_sentence = "Wand Licht an"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
-def msg_Wand_aus(hermes, intentMessage):
+def msg_stube_Wand_licht_aus(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
 
     ws = create_connection("ws://192.168.178.102:8080")
     ws.send("Update GA:00_0_019=0")
     ws.close()
 
-    if len(intentMessage.slots.house_room) > 0:
-        house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(house_room))  # The response that will be said out loud by the TTS engine.
+    if len(intentMessage.slots.Stube_Wand_Licht_aus) > 0:
+        Stube_Wand_Licht_aus = intentMessage.slots.Stube_Wand_Licht_aus.first().value # We extract the value from the slot "house_room"
+        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(Stube_Wand_Licht_aus))  # The response that will be said out loud by the TTS engine.
     else:
         result_sentence = "Wand Licht aus"
 
@@ -97,6 +97,6 @@ if __name__ == "__main__":
     with Hermes(mqtt_options=mqtt_opts) as h:
         h.subscribe_intent("cetax:Stube_Tisch_Licht_an", msg_stube_tisch_licht_an)
         h.subscribe_intent("cetax:Stube_Tisch_Licht_aus", msg_stube_tisch_licht_aus)
-        h.subscribe_intent("cetax:Wand_Licht_an", msg_Wand_an)
-        h.subscribe_intent("cetax:Wand_Licht_aus", msg_Wand_aus)
+        h.subscribe_intent("cetax:Stube_Wand_Licht_an", msg_stube_Wand_licht_an)
+        h.subscribe_intent("cetax:Stube_Wand_Licht_aus", msg_stube_Wand_licht_aus)
         h.start()
