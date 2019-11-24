@@ -34,12 +34,8 @@ def msg_stube_tisch_licht_an(hermes, intentMessage):
     ws.send("Update GA:00_0_002=1")
     #result =  ws.recv()
     ws.close()
-
-    if len(intentMessage.slots.Stube_Tisch_licht_an) > 0:
-        Stube_Tisch_licht_an = intentMessage.slots.Stube_Tisch_licht_an.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Tisch Licht in {} angeschaltet".format(str(Stube_Tisch_licht_an))  # The response that will be said out loud by the TTS engine.
-    else:
-        result_sentence = "Tisch Licht an"
+    
+    result_sentence = "Tisch Licht an"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
@@ -51,11 +47,7 @@ def msg_stube_tisch_licht_aus(hermes, intentMessage):
     ws.send("Update GA:00_0_002=0")
     ws.close()
 
-    if len(intentMessage.slots.Stube_Tisch_licht_aus) > 0:
-        Stube_Tisch_licht_aus = intentMessage.slots.Stube_Tisch_licht_aus.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Tisch Licht in {} ausgeschaltet".format(str(Stube_Tisch_licht_aus))  # The response that will be said out loud by the TTS engine.
-    else:
-        result_sentence = "Tisch Licht aus"
+    result_sentence = "Tisch Licht aus"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
@@ -67,11 +59,7 @@ def msg_stube_Wand_licht_an(hermes, intentMessage):
     ws.send("Update GA:00_0_019=1")
     ws.close()
 
-    if len(intentMessage.slots.Stube_Wand_Licht_an) > 0:
-        Stube_Wand_Licht_an = intentMessage.slots.Stube_Wand_Licht_an.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(Stube_Wand_Licht_an))  # The response that will be said out loud by the TTS engine.
-    else:
-        result_sentence = "Wand Licht an"
+    result_sentence = "Wand Licht an"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
@@ -83,11 +71,7 @@ def msg_stube_Wand_licht_aus(hermes, intentMessage):
     ws.send("Update GA:00_0_019=0")
     ws.close()
 
-    if len(intentMessage.slots.Stube_Wand_Licht_aus) > 0:
-        Stube_Wand_Licht_aus = intentMessage.slots.Stube_Wand_Licht_aus.first().value # We extract the value from the slot "house_room"
-        result_sentence = "Das Licht wird in {} ausgeschaltet".format(str(Stube_Wand_Licht_aus))  # The response that will be said out loud by the TTS engine.
-    else:
-        result_sentence = "Wand Licht aus"
+    result_sentence = "Wand Licht aus"
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
