@@ -39,6 +39,7 @@ def msg_stube_tisch_licht_an(hermes, intentMessage):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
 
+    
 def msg_stube_tisch_licht_aus(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
     
@@ -50,6 +51,7 @@ def msg_stube_tisch_licht_aus(hermes, intentMessage):
 
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
+    
     
 def msg_stube_Wand_licht_an(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
@@ -63,6 +65,7 @@ def msg_stube_Wand_licht_an(hermes, intentMessage):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
     
+    
 def msg_stube_Wand_licht_aus(hermes, intentMessage):
     conf = read_configuration_file(CONFIG_INI)
 
@@ -75,6 +78,7 @@ def msg_stube_Wand_licht_aus(hermes, intentMessage):
     current_session_id = intentMessage.session_id
     hermes.publish_end_session(current_session_id, result_sentence)
 
+    
 if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
